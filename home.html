@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Coffee Aroma</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-image: linear-gradient(rgba(248, 243, 243, 0.88), rgba(255, 255, 255, 0.649)), url('coffee.jpg');
+      color: #4b3e2b;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    header {
+      background-image: url('coffee.jpg');
+      color: white;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      background: black;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    section {
+      padding: 2rem;
+    }
+
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1510626176961-4bfb7fa1cfb6');
+      background-size: cover;
+      background-position: center;
+      color: #5a3c29;
+      padding: 5rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 24px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .menu-item {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    footer {
+      background-color: #7b4f35;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 16px;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.38);
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    .coffee-bean {
+      position: absolute;
+      animation: fall 5s linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .coffee-bean img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="beans-container"></div>
+
+  <header>
+    <h1>Coffee Aroma</h1>
+    <p>Feel the warmth in every cup</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Us</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Welcome to Your Coffee Aroma</h2>
+    <p>Your cozy coffee spot in the heart of the city.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      At Coffee Aroma, we believe coffee is more than a drink — it’s a moment of joy. Our beans are ethically sourced and roasted with passion to bring you unforgettable flavor.
+    </p>
+  </section>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu">
+      <div class="menu-item">
+        <h3>Espresso</h3>
+        <p>Rich and bold, made from our signature dark roast.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Cappuccino</h3>
+        <p>Espresso with steamed milk and a touch of foam.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Cold Brew</h3>
+        <p>Slow-steeped and served cold for a smooth taste.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Latte Macchiato</h3>
+        <p>Layered perfection of steamed milk and a gentle espresso shot, smooth and creamy with a hint of boldness.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Ice Latte</h3>
+        <p>Chilled espresso blended with cold milk and ice — a refreshing twist on your favorite latte.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Decaf Coffee</h3>
+        <p>All the rich flavor of coffee, without the caffeine — perfect for a calm and cozy moment anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: contact@coffeearoma.com</p>
+    <p>Address: Bulevardul Mihai Viteazul, nr. 178A, Cluj-Napoca</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Coffee Aroma. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function dropCoffeeBeans(count) {
+      const beansContainer = document.getElementById('beans-container');
+      const beanImageUrl = 'bob.png';
+
+      for (let i = 0; i < count; i++) {
+        const bean = document.createElement('div');
+        bean.className = 'coffee-bean';
+
+        const img = document.createElement('img');
+        img.src = beanImageUrl;
+
+        const left = Math.random() * window.innerWidth;
+        const topOffset = -Math.random() * 1000;
+
+        bean.style.left = `${left}px`;
+        bean.style.top = `${topOffset}px`;
+
+        bean.appendChild(img);
+        beansContainer.appendChild(bean);
+
+        setTimeout(() => bean.remove(), 5000);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      dropCoffeeBeans(150);
+    });
+  </script>
+</body>
+</html>
